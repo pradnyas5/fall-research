@@ -112,18 +112,20 @@ robot_name/
 ## ROS Wrappers for Hardware
 
 ### Intel RealSense ROS Wrapper 
-    Find instructions here: https://github.com/MIT-SPARK/Kimera-VIO-ROS/blob/master/docs/hardware_setup.md#setup to set up the camera for Kimera VIO.
+    
+Find instructions here: https://github.com/MIT-SPARK/Kimera-VIO-ROS/blob/master/docs/hardware_setup.md#setup to set up the camera for Kimera VIO.
 
 ### Jackal Controller for Wheel Odometry
-    Find ROS tests here: https://www.clearpathrobotics.com/assets/guides/noetic/jackal/JackalTests.html#running-ros-tests
 
-    Jackal robots come preinstalled with a set of test scripts as part of the `jackal_tests` ROS package, which can be run to verify robot functionality at the component and system levels.
+Find ROS tests [here](https://www.clearpathrobotics.com/assets/guides/noetic/jackal/JackalTests.html#running-ros-tests).
 
-    If your Jackal does not have the jackal_tests ROS package installed already, you can manually install it by opening terminal and running:
+Jackal robots come preinstalled with a set of test scripts as part of the `jackal_tests` ROS package, which can be run to verify robot functionality at the component and system levels.
 
-    ```
-    sudo apt-get install ros-noetic-jackal-tests
-    ```
+If the Jackal does not have the jackal_tests ROS package installed already, you can manually install it by opening terminal and running:
+
+```
+sudo apt-get install ros-noetic-jackal-tests
+```
 
 ## Data Source Setup and Initialization 
 
