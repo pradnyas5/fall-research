@@ -4,9 +4,9 @@
 
 Hardware as used during dataset collection and testing:
 
-1. Intel RealSense D455: https://www.intelrealsense.com/depth-camera-d455/
+1. Intel RealSense [D455](https://www.intelrealsense.com/depth-camera-d455/)
 
-2. Clearpath UGV: https://clearpathrobotics.com/jackal-small-unmanned-ground-vehicle/
+2. Clearpath [UGV](https://clearpathrobotics.com/jackal-small-unmanned-ground-vehicle/)
 
 3. Velodyne 3D lidar (only being used for collecting ground truth data)
 
