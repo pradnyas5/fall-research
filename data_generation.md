@@ -200,8 +200,16 @@ rosbag record -o $(arg bagfile_name) --bz2 (Use BZ2 to compress data, optional i
 /jackal_velocity_controller/odom
 
 ```
+4. Additionally a static transform between the base frame and the Realsense camera is published within the Kimera-Multi pipeline to align the camera's data 
+   to the robot's base frame. It is included in a launch file as:
+   
+```
+<!-- static transform for realsense to base frame -->
+<node pkg="tf2_ros" type="static_transform_publisher" name="base_to_realsense" args="0 0 -0.2 0 0 0 $(arg robot_name)/realsense_base $(arg robot_name)/base" />
+```
+'''bash 0 0 -0.2 0 0 0 ``` includes the translational and rotational orientation of the camera concerning the robot base frame.
 
-4. [OPTIONAL] Since we may need the compressed images (for optimal storage and transport of images using rosbag files), we can use the following: 
+5. [OPTIONAL] Since we may need the compressed images (for optimal storage and transport of images using rosbag files), we can use the following: 
 
 Example to record compressed left camera image,
 
