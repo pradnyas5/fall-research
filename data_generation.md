@@ -8,16 +8,16 @@ Hardware as used during dataset collection and testing:
 
 2. Clearpath UGV: https://clearpathrobotics.com/jackal-small-unmanned-ground-vehicle/
 
-3. Velodyne 3D lidar (* only being used for collecting ground truth data)
+3. Velodyne 3D lidar (only being used for collecting ground truth data)
 
 4.  Intel NUC computer with an Intel i7 4.70 GHz processor
 
-## Notes as found
+## Data Usage as found
 
 - Vision pipeline is implemented via Kimera-Semantics and Kimera-VIO.
 
 - Kimera VIO is solely responsible for processing the raw data. The raw data consists of `IMU` + `Stereo` data. 
-  IMU + Stereo Frame synch packets are sent to stereo vision front end module.
+  IMU + Stereo Frame synch packets are sent to the stereo vision front-end module.
 
 - VIO does publish the processed odometry as well as depth image data from rosbag. However these topics have not been subscirbed by any node in KImera-Multi.
 
@@ -77,7 +77,7 @@ topics:       /thoth/forward/color/camera_info                   16562 msgs    :
 ```
 ---
 
-- The data is pulished onto the following topics as recorded in a individual rosbag for each robot.
+- The data is published onto the following topics as recorded in an individual rosbag for each robot.
 ```
 robot_name/forward/
 ├── color/
@@ -160,7 +160,7 @@ In *TERMINAL 2*, run:
 roslaunch realsense2_camera rs_camera.launch camera:=forward unite_imu_method:=linear_interpolation enable_infra1:=true enable_infra2:=true
 ```
 
-*(*enable_*<stream_name>***: Choose whether to enable a specified stream or not. Default is true for images and false for orientation streams. <stream_name> can be any of *infra1, infra2, color, depth, fisheye, fisheye1, fisheye2, gyro, accel, pose, confidence*.)
+*(*enable_*<stream_name>***: Choose whether to enable a specified stream or not. The default is true for images and false for orientation streams. <stream_name> can be any of *infra1, infra2, color, depth, fisheye, fisheye1, fisheye2, gyro, accel, pose, confidence*.)
 *(after setting parameter *unite_imu_method*, the imu topics are replaced with /camera/imu)
 
 After passing the above command we should get the following topics:
@@ -175,8 +175,8 @@ After passing the above command we should get the following topics:
 - /forward/infra2/image_rect_raw
 - /forward/imu
 
-To confirm if the topics are being published as needed, in another *TERMINAl*, run:
-NOTE that *camera* has been replaced by *forward* because Kimera-Multi is subscribing to the topics with the *forward* namespace.
+To confirm if the topics are being published as needed, in another *TERMINAL*, run:
+NOTE: that *camera* has been replaced by *forward* because Kimera-Multi is subscribing to the topics with the *forward* namespace.
 
 ```
 rostopic list
@@ -208,13 +208,14 @@ rosbag record -o $(arg bagfile_name) --bz2 (Use BZ2 to compress data, optional i
 <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_realsense" args="0 0 -0.2 0 0 0 $(arg robot_name)/realsense_base $(arg robot_name)/base" />
 ```
 ```
-bash 0 0 -0.2 0 0 0
+0 0 -0.2 0 0 0
 ```
-includes the translational and rotational orientation of the camera concerning the robot base frame.
+  includes the translational (x, y, z) and rotational (roll, pitch, yaw) orientation of the camera concerning the robot base frame.
+  We need the relative position of the camera w.r.t base-frame on our robot.
 
 5. [OPTIONAL] Since we may need the compressed images (for optimal storage and transport of images using rosbag files), we can use the following: 
 
-Example to record compressed left camera image,
+  Example to record compressed left camera images,
 
 ```
 rosrun image_transport republish raw in:=/forward/infra1/image_rect_raw compressed out:=/forward/infra1/image_rect_raw/compressed
@@ -241,11 +242,11 @@ roslaunch kimera_distributed mit_rosbag.launch bagfile:=$ROSBAG0 input_ns:=$ROBO
   
   from:
   
-  /forward/infra1/image_rect_raw/compressed  (as recored by our rosbag)
+  */forward/infra1/image_rect_raw/compressed*  (as recored by our rosbag)
   
   to:
   
-  /robot_name/forward/infra1/image_rect_raw/compressed  (as required by Kimera vision front-end)
+  */robot_name/forward/infra1/image_rect_raw/compressed*  (as required by Kimera vision front-end)
 
 2. Play ROS Bag with --clock paramter. This indicates that the data within the bag file should be played back according to the recorded timestamps, 
    simulating the real-time operation of the robots.
