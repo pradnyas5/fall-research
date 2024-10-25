@@ -45,7 +45,7 @@ Subscribers: None
 ---
 
 - Example rosbag info:
-
+```
 rosbag info 10_14_thoth.bag 
 path:         10_14_thoth.bag
 version:      2.0
@@ -74,6 +74,7 @@ topics:       /thoth/forward/color/camera_info                   16562 msgs    :
               /thoth/forward/infra2/image_rect_raw/compressed    16583 msgs    : sensor_msgs/CompressedImage
               /thoth/jackal_velocity_controller/odom             27718 msgs    : nav_msgs/Odometry          
               /thoth/lidar_points                                 5496 msgs    : sensor_msgs/PointCloud2
+```
 ---
 
 - The data is pulished onto the following topics as recorded in a individual rosbag for each robot.
