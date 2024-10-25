@@ -207,7 +207,10 @@ rosbag record -o $(arg bagfile_name) --bz2 (Use BZ2 to compress data, optional i
 <!-- static transform for realsense to base frame -->
 <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_realsense" args="0 0 -0.2 0 0 0 $(arg robot_name)/realsense_base $(arg robot_name)/base" />
 ```
-'''bash 0 0 -0.2 0 0 0 ``` includes the translational and rotational orientation of the camera concerning the robot base frame.
+```
+bash 0 0 -0.2 0 0 0
+```
+includes the translational and rotational orientation of the camera concerning the robot base frame.
 
 5. [OPTIONAL] Since we may need the compressed images (for optimal storage and transport of images using rosbag files), we can use the following: 
 
