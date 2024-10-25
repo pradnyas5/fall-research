@@ -176,6 +176,7 @@ After passing the above command we should get the following topics:
 - /forward/imu
 
 To confirm if the topics are being published as needed, in another *TERMINAl*, run:
+NOTE that *camera* has been replaced by *forward* because Kimera-Multi is subscribing to the topics with the *forward* namespace.
 
 ```
 rostopic list
