@@ -93,13 +93,13 @@ robot_name/forward/
 │   ├── image_raw/compressed
 │   └── camera_info
 └── imu
-```
+
 robot_name/
 └── jackal_velocity_controller/odom
 
 robot_name/
 └── lidar_points
-
+```
 *forward* has been defined as the camera_name.
 
 - *image-transport* package is being used to decompress the compressed image obtained from rosbag into a raw image format.
