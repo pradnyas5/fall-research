@@ -78,7 +78,7 @@ topics:       /thoth/forward/color/camera_info                   16562 msgs    :
 ---
 
 - The data is pulished onto the following topics as recorded in a individual rosbag for each robot.
-
+```
 robot_name/forward/
 ├── color/
 │   ├── image_raw/compressed
@@ -93,7 +93,7 @@ robot_name/forward/
 │   ├── image_raw/compressed
 │   └── camera_info
 └── imu
-
+```
 robot_name/
 └── jackal_velocity_controller/odom
 
