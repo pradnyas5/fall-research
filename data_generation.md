@@ -106,7 +106,7 @@ robot_name/
 
     compressed_image -> image-transport -> image_raw (decompressed)  or vice-versa
 
-- kimera_vio_ros node subscribes to the raw image data and processed it further to the Kimera-Multi pipeline.
+- kimera_vio_ros node subscribes to the raw image data and processes it further to the Kimera-Multi pipeline.
 
 
 ## ROS Wrappers for Hardware
@@ -128,12 +128,6 @@ sudo apt-get install ros-noetic-jackal-tests
 ```
 ---
 ## Data Source Setup and Initialization 
-
-- Play ROS Bag with --clock paramter. This indicates that the data within the bag file should be played back according to the recorded timestamps, 
-  simulating the real-time operation of the robots.
-
-- Each ROS Bag is recorded in compressed format and therfore compressed images are published. Each compressed image is passed to decompress into a raw image format. 
-  Then that raw image is passed forward to the VIO front end.
 
 To tailor the data as per the Kimera-Multi requirements, we can follow the below steps: 
 
@@ -214,7 +208,7 @@ Example to record compressed left camera image,
 rosrun image_transport republish raw in:=/forward/infra1/image_rect_raw compressed out:=/forward/infra1/image_rect_raw/compressed
 ```
 ---
-## Rsbag Data usage
+## Rosbag Data usage
 
 1. Now that we have the data with us in the rosbag file, to tailor the data for each robot we can use the mit_rosbag.launch file to remap the data topics. 
    The data pane of Kimera-Multi uses a custom rosbag launch file and ccan be launched using teh following command: 
@@ -223,21 +217,24 @@ rosrun image_transport republish raw in:=/forward/infra1/image_rect_raw compress
 roslaunch kimera_distributed mit_rosbag.launch bagfile:=$ROSBAG0 input_ns:=$ROBOT0 output_ns:=$ROBOT0 rate:=$RATE
 ```
 
-Input namespace can be defined as: input_ns:=forward
-Output namespace can be defined as: output_ns:=robot_name
+  Input namespace can be defined as: input_ns:=forward
+  Output namespace can be defined as: output_ns:=robot_name
 
-We can edit the mit_rosbag.launch file to remap the topics to maintain consistenccy for data inputs to the vision pipeline.
-The reamapping in the file can be defiend as, for example:
+  We can edit the mit_rosbag.launch file to remap the topics to maintain consistenccy for data inputs to the vision pipeline.
+  The reamapping in the file can be defiend as, for example:
+  
+  <remap from="/$(arg input_ns)/infra1/image_rect_raw/compressed" to="/$(arg output_ns)/$(arg input_ns)/infra1/image_rect_raw/compressed"/>
+  
+  After defining input_ns and output_ns, the final topic should be remapped 
+  
+  from:
+  
+  /forward/infra1/image_rect_raw/compressed  (as recored by our rosbag)
+  
+  to:
+  
+  /robot_name/forward/infra1/image_rect_raw/compressed  (as required by Kimera vision front-end)
 
-<remap from="/$(arg input_ns)/infra1/image_rect_raw/compressed" to="/$(arg output_ns)/$(arg input_ns)/infra1/image_rect_raw/compressed"/>
-
-After defining input_ns and output_ns, the final topic should be remapped 
-
-from:
-
-/forward/infra1/image_rect_raw/compressed  (as recored by our rosbag)
-
-to:
-
-/robot_name/forward/infra1/image_rect_raw/compressed  (as required by Kimera vision front-end)
+2. Play ROS Bag with --clock paramter. This indicates that the data within the bag file should be played back according to the recorded timestamps, 
+   simulating the real-time operation of the robots.
 
