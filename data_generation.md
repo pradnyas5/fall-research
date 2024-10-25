@@ -23,7 +23,7 @@ Hardware as used during dataset collection and testing:
 
 ```
 rostopic info /thoth/kimera_vio_ros/odometry 
-```
+
 
 Type: nav_msgs/Odometry
 
@@ -31,18 +31,18 @@ Publishers:
  * /thoth/kimera_vio_ros/kimera_vio_ros_node (http://om:44033/)
 
 Subscribers: None
---- 
+```
 
 ```
 rostopic info /thoth/forward/depth/image_rect_raw
-```
+
 Type: sensor_msgs/Image
 
 Publishers: 
  * /player_thoth (http://om:46597/)
 
 Subscribers: None
----
+```
 
 - Example rosbag info:
 ```
@@ -113,7 +113,7 @@ robot_name/
 
 ### Intel RealSense ROS Wrapper 
     
-Find instructions here: https://github.com/MIT-SPARK/Kimera-VIO-ROS/blob/master/docs/hardware_setup.md#setup to set up the camera for Kimera VIO.
+Find instructions [here](https://github.com/MIT-SPARK/Kimera-VIO-ROS/blob/master/docs/hardware_setup.md#setup) to set up the camera for Kimera VIO.
 
 ### Jackal Controller for Wheel Odometry
 
