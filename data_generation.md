@@ -126,7 +126,7 @@ If the Jackal does not have the jackal_tests ROS package installed already, you 
 ```
 sudo apt-get install ros-noetic-jackal-tests
 ```
-
+---
 ## Data Source Setup and Initialization 
 
 - Play ROS Bag with --clock paramter. This indicates that the data within the bag file should be played back according to the recorded timestamps, 
@@ -168,7 +168,6 @@ roslaunch realsense2_camera rs_camera.launch camera:=forward unite_imu_method:=l
 
 *(*enable_*<stream_name>***: Choose whether to enable a specified stream or not. Default is true for images and false for orientation streams. <stream_name> can be any of *infra1, infra2, color, depth, fisheye, fisheye1, fisheye2, gyro, accel, pose, confidence*.)
 *(after setting parameter *unite_imu_method*, the imu topics are replaced with /camera/imu)
-
 
 After passing the above command we should get the following topics:
 
@@ -214,9 +213,7 @@ Example to record compressed left camera image,
 ```
 rosrun image_transport republish raw in:=/forward/infra1/image_rect_raw compressed out:=/forward/infra1/image_rect_raw/compressed
 ```
-
-5. 
-
+---
 ## Rsbag Data usage
 
 1. Now that we have the data with us in the rosbag file, to tailor the data for each robot we can use the mit_rosbag.launch file to remap the data topics. 
